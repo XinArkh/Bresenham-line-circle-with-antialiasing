@@ -1,13 +1,21 @@
 # Bresenham with antialiasing
-![](./interface.png)
+![](./pic/interface.png)
 
 A simple Qt application to show Bresenham Algorithm in drawing lines and circles, with optional anti-aliasing mode.
 
+![](./pic/compare.png)
+
+## Environment
+
+- Qt Version: Desktop Qt 5.12.9 MSVC2017 64bit. 
+
+Other Qt versions and platforms are supposed to be compilable.
+
 ## Usage
 
-Qt Version: Desktop Qt 5.12.9 MSVC2017 64bit. 
-
 A x64 release is uploaded to this repository, try it free.
+
+To access source code, open `./minidraw/minidraw.pro` with Qt Creator.
 
 ## Shortcut Keys
 
