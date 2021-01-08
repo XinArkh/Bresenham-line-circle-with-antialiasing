@@ -3,6 +3,8 @@
 
 A simple Qt application to show Bresenham Algorithm in drawing lines and circles, with optional anti-aliasing mode.
 
+## Illustration
+
 ![](./pic/compare.png)
 
 ## Environment
