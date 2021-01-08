@@ -170,25 +170,15 @@ void ImageWidget::renderAntiAliasing(QPainter &painter)
             float wi[9] = {1., 2., 1., 2., 4., 2., 1., 2., 1.};         // weight map
 
             for (int i = 0; i < 9; ++i) {                               // render around target point (3x3 pixels)
-                int color = qGray(image->pixel(x + dx[i], y + dy[i]));  // read current color in grayscale
-
-                if (color == 255) {                                     // if current pixel is white, draw color directly
-                    int c = round(255 * (1 - wi[i] / wi[4]));           // blackness = 255 - weighted whiteness
-                    painter.setPen(QColor(c, c, c));
-                    painter.drawPoint(x + dx[i], y + dy[i]);            // draw color to pixel
-//                    qDebug()<<"case 1:"<<1 - wi[i] / wi[4]<<c;
-                }
-                else if (color != 0) {                                  // if current pixel is gray, overlay the two blackness
                     int c0, c1, c;
-                    c0 = color;                                         // current whiteness
-                    c1 = round(255 * (1 - wi[i] / wi[4]));              // new whiteness
-                    c = (255 - c0) + (255 - c1);                        // total blackness
+                    c0 = qGray(image->pixel(x + dx[i], y + dy[i]));     // current color
+                    c1 = round(255 * (1 - wi[i] / wi[4]));              // new color
+                    c = (255 - c0) + (255 - c1);                        // overlaye two colors in blackness
                     c = c <= 255? c: 255;                               // clip blackness to no more than 255
-                    c = 255 - c;                                        // total whiteness
+                    c = 255 - c;                                        // overlayed color in whiteness
                     painter.setPen(QColor(c, c, c));
                     painter.drawPoint(x + dx[i], y + dy[i]);            // draw color to pixel
-//                    qDebug()<<"case 2:"<<1 - wi[i] / wi[4]<<c;
-                }
+//                    qDebug()<<1 - wi[i] / wi[4]<<c;
             }
         }
     }
